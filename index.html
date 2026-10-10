@@ -1,431 +1,441 @@
 <!DOCTYPE html>
-<html lang='en' class='scroll-smooth'>
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Chintu AI — The Autonomous Full-Stack AI Engineer</title>
-    <script src='https://cdn.tailwindcss.com'></script>
-    <link href='https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap' rel='stylesheet'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0a0a0c',
-                        accentOrange: '#FF6B00',
-                        accentLight: '#FF8C00',
-                        accentBright: '#FFA500',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chintu — Autonomous AI Engineer & Agency Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #0a0a0c;
             color: #f3f4f6;
             overflow-x: hidden;
         }
-        .liquid-glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
-        .liquid-glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+        }
+
+        .glass-panel-hover {
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .liquid-glass-card:hover {
-            background: rgba(255, 107, 0, 0.04);
-            border-color: rgba(255, 107, 0, 0.3);
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(255, 107, 0, 0.15);
+        .glass-panel-hover:hover {
+            background: rgba(255, 119, 0, 0.04);
+            border-color: rgba(255, 119, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(255, 119, 0, 0.15);
         }
-        @keyframes floatSlow {
+
+        .glass-nav {
+            background: rgba(10, 10, 12, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .liquid-gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #ffa500 50%, #ff7700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .liquid-button {
+            background: linear-gradient(135deg, #ff7700 0%, #ffa500 100%);
+            box-shadow: 0 10px 30px -10px rgba(255, 119, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .liquid-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -8px rgba(255, 119, 0, 0.7);
+        }
+
+        @keyframes float-slow {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(3deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
         }
-        @keyframes floatFast {
+
+        @keyframes float-reverse {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(-3deg); }
+            50% { transform: translateY(25px) rotate(-5deg); }
         }
-        @keyframes pulseGlow {
+
+        @keyframes pulse-glow {
             0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.08); }
+            50% { opacity: 0.8; transform: scale(1.05); }
         }
-        .blob-1 {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255,107,0,0.25) 0%, rgba(255,140,0,0.05) 70%, transparent 100%);
-            top: -100px;
-            left: -100px;
-            border-radius: 50%;
-            z-index: -1;
-            animation: floatSlow 10s ease-in-out infinite;
+
+        .floating-orb-1 {
+            animation: float-slow 10s ease-in-out infinite;
+            will-change: transform;
         }
-        .blob-2 {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255,140,0,0.2) 0%, rgba(255,69,0,0.03) 70%, transparent 100%);
-            top: 40%;
-            right: -150px;
-            border-radius: 50%;
-            z-index: -1;
-            animation: floatFast 12s ease-in-out infinite;
+
+        .floating-orb-2 {
+            animation: float-reverse 12s ease-in-out infinite;
+            will-change: transform;
         }
-        .blob-3 {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(255,165,0,0.18) 0%, rgba(255,107,0,0.02) 70%, transparent 100%);
-            bottom: 10%;
-            left: 10%;
-            border-radius: 50%;
-            z-index: -1;
-            animation: floatSlow 14s ease-in-out infinite;
+
+        .pulse-indicator {
+            animation: pulse-glow 3s ease-in-out infinite;
         }
-        .glow-text {
-            text-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
-        }
-        .custom-scrollbar::-webkit-scrollbar {
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
             width: 8px;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
+        ::-webkit-scrollbar-track {
             background: #0a0a0c;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 107, 0, 0.3);
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 4px;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 107, 0, 0.6);
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 119, 0, 0.5);
         }
     </style>
 </head>
-<body class='custom-scrollbar text-gray-100'>
+<body class="relative min-h-screen text-gray-100 selection:bg-orange-500 selection:text-white">
 
-    <!-- Background Liquid Blobs -->
-    <div class='blob-1'></div>
-    <div class='blob-2'></div>
-    <div class='blob-3'></div>
+    <!-- Ambient Floating Background Orbs -->
+    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-orange-600/20 to-amber-600/5 rounded-full blur-[140px] pointer-events-none floating-orb-1 -z-10"></div>
+    <div class="absolute top-1/3 right-10 w-[500px] h-[500px] bg-gradient-to-tr from-orange-500/15 to-yellow-600/5 rounded-full blur-[130px] pointer-events-none floating-orb-2 -z-10"></div>
+    <div class="absolute bottom-10 left-10 w-[700px] h-[700px] bg-gradient-to-r from-amber-700/10 to-orange-600/10 rounded-full blur-[160px] pointer-events-none floating-orb-1 -z-10"></div>
 
-    <!-- Navigation -->
-    <header class='fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-4'>
-        <nav class='max-w-7xl mx-auto liquid-glass rounded-2xl px-6 py-3 flex items-center justify-between'>
-            <div class='flex items-center space-x-3'>
-                <div class='relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-accentOrange to-accentLight shadow-lg shadow-accentOrange/30'>
-                    <i class='fa-solid fa-microchip text-white text-lg'></i>
-                    <div class='absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#0a0a0c] animate-pulse'></div>
+    <!-- Glass Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl liquid-button flex items-center justify-center font-bold text-xl text-white shadow-lg">
+                    C
                 </div>
                 <div>
-                    <span class='text-lg font-bold tracking-tight text-white'>CHINTU<span class='text-accentOrange'>.AI</span></span>
-                    <span class='block text-[10px] uppercase tracking-widest text-gray-400 font-mono'>Autonomous Agent</span>
+                    <span class="font-bold text-xl tracking-tight text-white">Chintu</span>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-indicator"></span>
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-gray-400">Autonomous Core</span>
+                    </div>
                 </div>
             </div>
 
-            <div class='hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300'>
-                <a href='#architecture' class='hover:text-accentOrange transition-colors duration-200'>Architecture</a>
-                <a href='#capabilities' class='hover:text-accentOrange transition-colors duration-200'>Capabilities</a>
-                <a href='#comparison' class='hover:text-accentOrange transition-colors duration-200'>Comparison</a>
-                <a href='#workflow' class='hover:text-accentOrange transition-colors duration-200'>Workflow</a>
-            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-orange-400 transition-colors">Architecture</a>
+                <a href="#capabilities" class="hover:text-orange-400 transition-colors">Capabilities</a>
+                <a href="#comparison" class="hover:text-orange-400 transition-colors">Comparison</a>
+                <a href="#guide" class="hover:text-orange-400 transition-colors">Delegation Guide</a>
+            </nav>
 
-            <div class='flex items-center space-x-4'>
-                <a href='https://t.me/ChintuAIBot' target='_blank' class='relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-accentOrange to-accentLight text-white font-semibold text-sm shadow-lg shadow-accentOrange/30 hover:shadow-accentOrange/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300'>
-                    <i class='fa-solid fa-terminal'></i>
-                    <span>Launch System</span>
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/abhinabgohain60-ops/chintu-showcase" target="_blank" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-xl glass-panel text-xs font-mono text-gray-300 hover:text-white hover:border-orange-500/40 transition-all">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span>chintu-showcase</span>
+                </a>
+                <a href="#guide" class="px-5 py-2.5 rounded-xl liquid-button text-sm font-semibold text-white shadow-lg">
+                    Deploy Mission
                 </a>
             </div>
-        </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section class='relative min-h-screen flex items-center justify-center pt-32 pb-20 px-4 sm:px-8'>
-        <div class='max-w-5xl mx-auto text-center z-10'>
-            <div class='inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass mb-6 border border-accentOrange/30 text-accentBright text-xs sm:text-sm font-medium animate-bounce'>
-                <i class='fa-solid fa-bolt-lightning'></i>
-                <span>Next-Gen Liquid Glass Architecture V3.4</span>
+    <section class="relative pt-36 pb-24 md:pt-48 md:pb-32 px-6 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-panel mb-8 border border-orange-500/20">
+                <span class="flex h-2 w-2 rounded-full bg-orange-500 animate-ping"></span>
+                <span class="text-xs font-mono tracking-wide text-orange-400">Self-Evolving Autonomous Agency Intelligence</span>
             </div>
-            
-            <h1 class='text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]'>
-                The Self-Evolving <br class='hidden sm:inline'>
-                <span class='bg-gradient-to-r from-accentOrange via-accentLight to-accentBright bg-clip-text text-transparent glow-text'>Autonomous Agency Intelligence</span>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1]">
+                The Self-Evolving <br class="hidden sm:inline">
+                <span class="liquid-gradient-text">Autonomous AI Engineer</span>
             </h1>
 
-            <p class='max-w-3xl mx-auto text-base sm:text-xl text-gray-300 mb-10 leading-relaxed font-normal'>
-                Chintu is an elite autonomous full-stack AI engineer engineered with dual-engine Llama reasoning, real-time lead hunting, persistent memory, and self-patching GitHub deployment capabilities.
+            <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+                Chintu is a next-generation autonomous AI engineer built for zero-touch agency operations. Combining Gemini orchestration, dual-engine Llama reasoning, persistent Supabase memory, and self-patching GitHub workflows.
             </p>
 
-            <div class='flex flex-col sm:flex-row items-center justify-center gap-4'>
-                <a href='#capabilities' class='w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-accentOrange to-accentLight text-white font-bold text-base shadow-xl shadow-accentOrange/30 hover:shadow-accentOrange/50 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3'>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#capabilities" class="w-full sm:w-auto px-8 py-4 rounded-2xl liquid-button text-base font-semibold text-white flex items-center justify-center space-x-3">
                     <span>Explore Capabilities</span>
-                    <i class='fa-solid fa-arrow-right-long'></i>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </a>
-                <a href='#architecture' class='w-full sm:w-auto px-8 py-4 rounded-2xl liquid-glass text-white font-bold text-base hover:bg-white/10 hover:border-accentOrange/50 transition-all duration-300 flex items-center justify-center gap-3'>
-                    <i class='fa-solid fa-microchip text-accentOrange'></i>
-                    <span>System Architecture</span>
+                <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-panel text-base font-semibold text-gray-300 hover:text-white hover:border-orange-500/40 flex items-center justify-center space-x-3">
+                    <i data-lucide="cpu" class="w-5 h-5 text-orange-400"></i>
+                    <span>Review Architecture</span>
                 </a>
             </div>
 
-            <!-- Telemetry Stats Bar -->
-            <div class='grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 max-w-4xl mx-auto'>
-                <div class='liquid-glass-card rounded-2xl p-5 text-center'>
-                    <div class='text-2xl sm:text-3xl font-extrabold text-white mb-1 font-mono'>100%</div>
-                    <div class='text-xs uppercase tracking-wider text-gray-400 font-medium'>Autonomous Uptime</div>
+            <!-- Telemetry Bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="glass-panel p-4 text-left">
+                    <div class="text-xs font-mono text-gray-400 mb-1">MEMORY ENGINE</div>
+                    <div class="text-lg font-bold text-white flex items-center space-x-2">
+                        <i data-lucide="database" class="w-4 h-4 text-orange-400"></i>
+                        <span>Supabase Active</span>
+                    </div>
                 </div>
-                <div class='liquid-glass-card rounded-2xl p-5 text-center'>
-                    <div class='text-2xl sm:text-3xl font-extrabold text-accentOrange mb-1 font-mono'>Dual-Engine</div>
-                    <div class='text-xs uppercase tracking-wider text-gray-400 font-medium'>Llama Reasoning</div>
+                <div class="glass-panel p-4 text-left">
+                    <div class="text-xs font-mono text-gray-400 mb-1">REASONING CORE</div>
+                    <div class="text-lg font-bold text-white flex items-center space-x-2">
+                        <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
+                        <span>Llama 3.3 + Qwen</span>
+                    </div>
                 </div>
-                <div class='liquid-glass-card rounded-2xl p-5 text-center'>
-                    <div class='text-2xl sm:text-3xl font-extrabold text-white mb-1 font-mono'>Supabase</div>
-                    <div class='text-xs uppercase tracking-wider text-gray-400 font-medium'>Persistent Memory</div>
+                <div class="glass-panel p-4 text-left">
+                    <div class="text-xs font-mono text-gray-400 mb-1">EXECUTION SANDBOX</div>
+                    <div class="text-lg font-bold text-white flex items-center space-x-2">
+                        <i data-lucide="box" class="w-4 h-4 text-orange-500"></i>
+                        <span>E2B MicroVMs</span>
+                    </div>
                 </div>
-                <div class='liquid-glass-card rounded-2xl p-5 text-center'>
-                    <div class='text-2xl sm:text-3xl font-extrabold text-accentBright mb-1 font-mono'>Instant</div>
-                    <div class='text-xs uppercase tracking-wider text-gray-400 font-medium'>GitHub Deployment</div>
+                <div class="glass-panel p-4 text-left">
+                    <div class="text-xs font-mono text-gray-400 mb-1">AUTONOMOUS CRON</div>
+                    <div class="text-lg font-bold text-white flex items-center space-x-2">
+                        <i data-lucide="clock" class="w-4 h-4 text-emerald-400"></i>
+                        <span>24/7 Background</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- What is Chintu Section -->
-    <section id='architecture' class='py-24 px-4 sm:px-8 relative'>
-        <div class='max-w-7xl mx-auto'>
-            <div class='text-center max-w-3xl mx-auto mb-16'>
-                <div class='inline-flex items-center gap-2 px-3 py-1.5 rounded-full liquid-glass text-accentOrange text-xs font-mono uppercase tracking-wider mb-4'>
-                    <i class='fa-solid fa-brain'></i> Core Architecture
-                </div>
-                <h2 class='text-3xl sm:text-5xl font-extrabold text-white mb-4'>What is Chintu?</h2>
-                <p class='text-gray-400 text-base sm:text-lg'>Built with a modular, fault-tolerant stack engineered for maximum autonomy and precision execution.</p>
+    <section id="about" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-orange-400 mb-3">Architectural Breakdown</h2>
+                <h3 class="text-3xl sm:text-5xl font-bold tracking-tight mb-6">What is Chintu?</h3>
+                <p class="text-gray-400 text-lg">Unlike stateless chatbots that forget everything upon session reset, Chintu is a persistent, fully autonomous engineering agent.</p>
             </div>
 
-            <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Card 1 -->
-                <div class='liquid-glass-card rounded-3xl p-8 relative group'>
-                    <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-accentOrange/20 to-accentLight/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-2xl mb-6 group-hover:scale-110 transition-transform duration-300'>
-                        <i class='fa-solid fa-network-wired'></i>
+                <div class="glass-panel p-8 glass-panel-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 mb-6">
+                            <i data-lucide="brain" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-white">Gemini Orchestration</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Driven by high-capacity Gemini intelligence for macro task decomposition, multi-tool scheduling, and end-to-end workflow execution.</p>
                     </div>
-                    <h3 class='text-xl font-bold text-white mb-3'>Gemini Orchestrator</h3>
-                    <p class='text-gray-400 text-sm leading-relaxed'>
-                        Acts as the primary executive brain, routing incoming missions, scheduling cron triggers, and delegating specialized tool calls dynamically.
-                    </p>
+                    <div class="mt-8 pt-4 border-t border-white/5 font-mono text-xs text-orange-400 flex items-center space-x-2">
+                        <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+                        <span>Primary Controller</span>
+                    </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class='liquid-glass-card rounded-3xl p-8 relative group'>
-                    <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-accentOrange/20 to-accentLight/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-2xl mb-6 group-hover:scale-110 transition-transform duration-300'>
-                        <i class='fa-solid fa-microchip'></i>
+                <div class="glass-panel p-8 glass-panel-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6">
+                            <i data-lucide="cpu" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-white">Dual-Engine Reasoning</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Leverages Groq Llama 3.3 and Hugging Face Qwen specialists for deep code audits, architecture validation, and algorithmic debugging.</p>
                     </div>
-                    <h3 class='text-xl font-bold text-white mb-3'>Dual-Engine Llama</h3>
-                    <p class='text-gray-400 text-sm leading-relaxed'>
-                        Leverages Groq-accelerated Llama specialists for ultra-deep recursive reasoning, code synthesis, and syntactic validation.
-                    </p>
+                    <div class="mt-8 pt-4 border-t border-white/5 font-mono text-xs text-amber-400 flex items-center space-x-2">
+                        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                        <span>Zero Latency Inference</span>
+                    </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class='liquid-glass-card rounded-3xl p-8 relative group'>
-                    <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-accentOrange/20 to-accentLight/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-2xl mb-6 group-hover:scale-110 transition-transform duration-300'>
-                        <i class='fa-solid fa-database'></i>
+                <div class="glass-panel p-8 glass-panel-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-orange-600/10 border border-orange-600/30 flex items-center justify-center text-orange-500 mb-6">
+                            <i data-lucide="database" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-white">Persistent Supabase</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Stores memory state, project milestones, client lead pipelines, and context variables across sessions without data loss.</p>
                     </div>
-                    <h3 class='text-xl font-bold text-white mb-3'>Persistent Supabase</h3>
-                    <p class='text-gray-400 text-sm leading-relaxed'>
-                        Stores long-term agent memory, client interaction history, and active project states across server reboots with zero data loss.
-                    </p>
+                    <div class="mt-8 pt-4 border-t border-white/5 font-mono text-xs text-orange-500 flex items-center space-x-2">
+                        <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i>
+                        <span>State Preservation</span>
+                    </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class='liquid-glass-card rounded-3xl p-8 relative group'>
-                    <div class='w-14 h-14 rounded-2xl bg-gradient-to-br from-accentOrange/20 to-accentLight/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-2xl mb-6 group-hover:scale-110 transition-transform duration-300'>
-                        <i class='fa-solid fa-clock-rotate-left'></i>
+                <div class="glass-panel p-8 glass-panel-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6">
+                            <i data-lucide="clock" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-white">Cron Scheduling</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Runs background recurring tasks autonomously, performing lead hunting, health checks, and continuous telemetry monitoring 24/7.</p>
                     </div>
-                    <h3 class='text-xl font-bold text-white mb-3'>Autonomous APScheduler</h3>
-                    <p class='text-gray-400 text-sm leading-relaxed'>
-                        Runs background cron tasks continuously, fetching fresh leads, executing scheduled maintenance, and reporting telemetry.
-                    </p>
+                    <div class="mt-8 pt-4 border-t border-white/5 font-mono text-xs text-emerald-400 flex items-center space-x-2">
+                        <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                        <span>Autonomous Loops</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- What Can Chintu Do Section -->
-    <section id='capabilities' class='py-24 px-4 sm:px-8 relative'>
-        <div class='max-w-7xl mx-auto'>
-            <div class='text-center max-w-3xl mx-auto mb-16'>
-                <div class='inline-flex items-center gap-2 px-3 py-1.5 rounded-full liquid-glass text-accentOrange text-xs font-mono uppercase tracking-wider mb-4'>
-                    <i class='fa-solid fa- Wand-magic-sparkles'></i> Core Capabilities
-                </div>
-                <h2 class='text-3xl sm:text-5xl font-extrabold text-white mb-4'>What Can Chintu Do?</h2>
-                <p class='text-gray-400 text-base sm:text-lg'>Full-spectrum autonomous execution powered by state-of-the-art APIs and cloud sandboxes.</p>
+    <!-- Interactive Capabilities Grid -->
+    <section id="capabilities" class="py-24 px-6 relative bg-gradient-to-b from-transparent via-orange-950/10 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-orange-400 mb-3">Modular Toolchain</h2>
+                <h3 class="text-3xl sm:text-5xl font-bold tracking-tight mb-6">Autonomous Capabilities Grid</h3>
+                <p class="text-gray-400 text-lg">Equipped with enterprise-grade native integrations for end-to-end digital agency operations.</p>
             </div>
 
-            <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Capability 1 -->
-                <div class='liquid-glass-card rounded-3xl p-8 flex flex-col justify-between'>
-                    <div>
-                        <div class='flex items-center justify-between mb-6'>
-                            <div class='w-12 h-12 rounded-xl bg-accentOrange/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-xl'>
-                                <i class='fa-solid fa-magnifying-glass-dollar'></i>
-                            </div>
-                            <span class='text-xs font-mono uppercase px-3 py-1 rounded-full bg-accentOrange/10 text-accentBright border border-accentOrange/25'>Live Hunting</span>
+                <div class="glass-panel p-8 glass-panel-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400">
+                            <i data-lucide="search" class="w-6 h-6"></i>
                         </div>
-                        <h3 class='text-xl font-bold text-white mb-3'>Client Lead Acquisition</h3>
-                        <p class='text-gray-400 text-sm leading-relaxed'>
-                            Scours Reddit, X, and creator boards in real-time via DuckDuckGo to discover fresh hiring and freelance gigs, instantly drafting and sending professional proposals.
-                        </p>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">Lead Generation</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Multi-Platform Lead Hunter</h4>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Scours Reddit, X, and creator boards live via DuckDuckGo to discover fresh hiring posts and gig requests for video editors, developers, and designers.</p>
+                    <div class="bg-black/40 rounded-xl p-4 font-mono text-xs text-gray-300 border border-white/5">
+                        <span class="text-orange-400">&gt;</span> hunt_client_leads(niche="video editor")
                     </div>
                 </div>
 
                 <!-- Capability 2 -->
-                <div class='liquid-glass-card rounded-3xl p-8 flex flex-col justify-between'>
-                    <div>
-                        <div class='flex items-center justify-between mb-6'>
-                            <div class='w-12 h-12 rounded-xl bg-accentOrange/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-xl'>
-                                <i class='fa-solid fa-palette'></i>
-                            </div>
-                            <span class='text-xs font-mono uppercase px-3 py-1 rounded-full bg-accentOrange/10 text-accentBright border border-accentOrange/25'>Generative AI</span>
+                <div class="glass-panel p-8 glass-panel-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                            <i data-lucide="image" class="w-6 h-6"></i>
                         </div>
-                        <h3 class='text-xl font-bold text-white mb-3'>Hugging Face FLUX Vision</h3>
-                        <p class='text-gray-400 text-sm leading-relaxed'>
-                            Generates high-fidelity visual concepts, UI mockups, and artistic assets via advanced FLUX and SDXL models, dispatching them directly to Telegram.
-                        </p>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">Generative Media</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Hugging Face FLUX Visuals</h4>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Instantly synthesizes high-fidelity concept art, mockups, and visual assets via state-of-the-art FLUX and SDXL models, dispatching directly to Telegram.</p>
+                    <div class="bg-black/40 rounded-xl p-4 font-mono text-xs text-gray-300 border border-white/5">
+                        <span class="text-amber-400">&gt;</span> generate_ai_image(prompt="glassmorphic dashboard")
                     </div>
                 </div>
 
                 <!-- Capability 3 -->
-                <div class='liquid-glass-card rounded-3xl p-8 flex flex-col justify-between'>
-                    <div>
-                        <div class='flex items-center justify-between mb-6'>
-                            <div class='w-12 h-12 rounded-xl bg-accentOrange/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-xl'>
-                                <i class='fa-solid fa-cloud-arrow-up'></i>
-                            </div>
-                            <span class='text-xs font-mono uppercase px-3 py-1 rounded-full bg-accentOrange/10 text-accentBright border border-accentOrange/25'>Cloud Sandbox</span>
+                <div class="glass-panel p-8 glass-panel-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-orange-600/10 border border-orange-600/30 flex items-center justify-center text-orange-500">
+                            <i data-lucide="box" class="w-6 h-6"></i>
                         </div>
-                        <h3 class='text-xl font-bold text-white mb-3'>E2B Cloud MicroVM Execution</h3>
-                        <p class='text-gray-400 text-sm leading-relaxed'>
-                            Executes untrusted code, runs Python data pipelines, and compiles full-stack web applications securely inside isolated E2B microVM sandboxes.
-                        </p>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-orange-600/10 text-orange-500 border border-orange-600/20">Secure Execution</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">E2B Cloud Sandboxes</h4>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Executes Python scripts, test suites, and data pipelines inside isolated, secure E2B MicroVMs with zero risk to the host container.</p>
+                    <div class="bg-black/40 rounded-xl p-4 font-mono text-xs text-gray-300 border border-white/5">
+                        <span class="text-orange-500">&gt;</span> execute_in_cloud_microvm(code="...")
                     </div>
                 </div>
 
                 <!-- Capability 4 -->
-                <div class='liquid-glass-card rounded-3xl p-8 flex flex-col justify-between'>
-                    <div>
-                        <div class='flex items-center justify-between mb-6'>
-                            <div class='w-12 h-12 rounded-xl bg-accentOrange/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-xl'>
-                                <i class='fa-solid fa-code-merge'></i>
-                            </div>
-                            <span class='text-xs font-mono uppercase px-3 py-1 rounded-full bg-accentOrange/10 text-accentBright border border-accentOrange/25'>Self-Evolution</span>
+                <div class="glass-panel p-8 glass-panel-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                            <i data-lucide="git-branch" class="w-6 h-6"></i>
                         </div>
-                        <h3 class='text-xl font-bold text-white mb-3'>GitHub Self-Evolution</h3>
-                        <p class='text-gray-400 text-sm leading-relaxed'>
-                            Creates repositories, commits files, updates source code, and triggers instant production deployments on Render and GitHub Pages autonomously.
-                        </p>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Self-Evolution</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Autonomous GitHub CI/CD</h4>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Creates isolated repositories, commits production code directly, and configures live hosting endpoints without manual intervention.</p>
+                    <div class="bg-black/40 rounded-xl p-4 font-mono text-xs text-gray-300 border border-white/5">
+                        <span class="text-blue-400">&gt;</span> github_commit_file(repo="chintu-showcase")
                     </div>
                 </div>
 
                 <!-- Capability 5 -->
-                <div class='liquid-glass-card rounded-3xl p-8 flex flex-col justify-between'>
-                    <div>
-                        <div class='flex items-center justify-between mb-6'>
-                            <div class='w-12 h-12 rounded-xl bg-accentOrange/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-xl'>
-                                <i class='fa-solid fa-paper-plane'></i>
-                            </div>
-                            <span class='text-xs font-mono uppercase px-3 py-1 rounded-full bg-accentOrange/10 text-accentBright border border-accentOrange/25'>Omnichannel</span>
+                <div class="glass-panel p-8 glass-panel-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
                         </div>
-                        <h3 class='text-xl font-bold text-white mb-3'>Telegram & SMTP Dispatch</h3>
-                        <p class='text-gray-400 text-sm leading-relaxed'>
-                            Delivers instantaneous text updates, documents, generated images, and client proposal emails directly through Telegram bots and Gmail SMTP relays.
-                        </p>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Client Outreach</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">SMTP Client Proposals</h4>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Drafts and dispatches professional project proposals and partnership pitches directly to prospective clients via Gmail SMTP.</p>
+                    <div class="bg-black/40 rounded-xl p-4 font-mono text-xs text-gray-300 border border-white/5">
+                        <span class="text-emerald-400">&gt;</span> send_client_email(to="client@domain.com")
                     </div>
                 </div>
 
                 <!-- Capability 6 -->
-                <div class='liquid-glass-card rounded-3xl p-8 flex flex-col justify-between'>
-                    <div>
-                        <div class='flex items-center justify-between mb-6'>
-                            <div class='w-12 h-12 rounded-xl bg-accentOrange/10 border border-accentOrange/30 flex items-center justify-center text-accentOrange text-xl'>
-                                <i class='fa-solid fa-shield-halved'></i>
-                            </div>
-                            <span class='text-xs font-mono uppercase px-3 py-1 rounded-full bg-accentOrange/10 text-accentBright border border-accentOrange/25'>Reliability</span>
+                <div class="glass-panel p-8 glass-panel-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                            <i data-lucide="send" class="w-6 h-6"></i>
                         </div>
-                        <h3 class='text-xl font-bold text-white mb-3'>Fault-Tolerant Error Recovery</h3>
-                        <p class='text-gray-400 text-sm leading-relaxed'>
-                            Self-diagnoses runtime errors, catches API rate limits, implements exponential backoff, and ensures 100% continuous operational uptime.
-                        </p>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Instant Telemetry</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Telegram Dispatch</h4>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Pipes status updates, charts, documents, and real-time alerts instantly to Telegram channels for absolute visibility.</p>
+                    <div class="bg-black/40 rounded-xl p-4 font-mono text-xs text-gray-300 border border-white/5">
+                        <span class="text-purple-400">&gt;</span> send_telegram_photo(file_path="chart.png")
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Chintu Outperforms Section -->
-    <section id='comparison' class='py-24 px-4 sm:px-8 relative'>
-        <div class='max-w-7xl mx-auto'>
-            <div class='text-center max-w-3xl mx-auto mb-16'>
-                <div class='inline-flex items-center gap-2 px-3 py-1.5 rounded-full liquid-glass text-accentOrange text-xs font-mono uppercase tracking-wider mb-4'>
-                    <i class='fa-solid fa-scale-balanced'></i> Comparative Advantage
-                </div>
-                <h2 class='text-3xl sm:text-5xl font-extrabold text-white mb-4'>Why Chintu Outperforms Others</h2>
-                <p class='text-gray-400 text-base sm:text-lg'>How Chintu surpasses traditional Claude Code CLI workflows and standard ReAct chatbots.</p>
+    <!-- Comparison Matrix Section -->
+    <section id="comparison" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-orange-400 mb-3">Competitive Edge</h2>
+                <h3 class="text-3xl sm:text-5xl font-bold tracking-tight mb-6">How Chintu Compares</h3>
+                <p class="text-gray-400 text-lg">See why autonomous multi-tool architecture outperforms standard stateless ReAct bots and code assistants.</p>
             </div>
 
-            <div class='liquid-glass rounded-3xl overflow-hidden shadow-2xl'>
-                <div class='overflow-x-auto'>
-                    <table class='w-full text-left border-collapse'>
+            <div class="glass-panel overflow-hidden border border-white/10">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class='border-b border-white/10 bg-white/5'>
-                                <th class='p-6 text-sm font-bold uppercase tracking-wider text-gray-300'>Dimension</th>
-                                <th class='p-6 text-sm font-bold uppercase tracking-wider text-accentBright bg-accentOrange/10 border-x border-accentOrange/20'>Chintu AI Agent</th>
-                                <th class='p-6 text-sm font-bold uppercase tracking-wider text-gray-400'>Claude Code / CLI Bots</th>
-                                <th class='p-6 text-sm font-bold uppercase tracking-wider text-gray-400'>Standard ReAct Chatbots</th>
+                            <tr class="border-b border-white/10 bg-white/[0.02]">
+                                <th class="p-6 font-mono text-sm text-gray-400 uppercase tracking-wider">Feature / Capability</th>
+                                <th class="p-6 font-mono text-sm text-orange-400 uppercase tracking-wider bg-orange-500/5">Chintu Agent</th>
+                                <th class="p-6 font-mono text-sm text-gray-400 uppercase tracking-wider">Standard ReAct Bots</th>
+                                <th class="p-6 font-mono text-sm text-gray-400 uppercase tracking-wider">Claude Code / CLI</th>
                             </tr>
                         </thead>
-                        <tbody class='divide-y divide-white/5 text-sm'>
-                            <tr class='hover:bg-white/[0.02] transition-colors'>
-                                <td class='p-6 font-semibold text-white'>Memory & Persistence</td>
-                                <td class='p-6 text-accentBright font-medium bg-accentOrange/[0.03] border-x border-accentOrange/15'>
-                                    <i class='fa-solid fa-circle-check text-emerald-400 mr-2'></i> Long-term Supabase storage across reboots
-                                </td>
-                                <td class='p-6 text-gray-400'><i class='fa-solid fa-circle-xmark text-rose-400 mr-2'></i> Session-based file memory only</td>
-                                <td class='p-6 text-gray-400'><i class='fa-solid fa-circle-xmark text-rose-400 mr-2'></i> Resets completely on refresh</td>
+                        <tbody class="divide-y divide-white/5 text-sm">
+                            <tr>
+                                <td class="p-6 font-semibold text-white">Persistent Long-Term Memory</td>
+                                <td class="p-6 bg-orange-500/5 text-orange-300 font-medium">Supabase Cloud Database</td>
+                                <td class="p-6 text-gray-400">Session Resets (Volatile)</td>
+                                <td class="p-6 text-gray-400">Local JSON State Files</td>
                             </tr>
-                            <tr class='hover:bg-white/[0.02] transition-colors'>
-                                <td class='p-6 font-semibold text-white'>Autonomous Cron & Leads</td>
-                                <td class='p-6 text-accentBright font-medium bg-accentOrange/[0.03] border-x border-accentOrange/15'>
-                                    <i class='fa-solid fa-circle-check text-emerald-400 mr-2'></i> APScheduler background hunting & emailing
-                                </td>
-                                <td class='p-6 text-gray-400'><i class='fa-solid fa-circle-xmark text-rose-400 mr-2'></i> Requires manual CLI command triggers</td>
-                                <td class='p-6 text-gray-400'><i class='fa-solid fa-circle-xmark text-rose-400 mr-2'></i> Passive conversational only</td>
+                            <tr>
+                                <td class="p-6 font-semibold text-white">Autonomous Background Cron</td>
+                                <td class="p-6 bg-orange-500/5 text-orange-300 font-medium">24/7 Recurring Job Scheduler</td>
+                                <td class="p-6 text-gray-400">None (Manual Prompting Only)</td>
+                                <td class="p-6 text-gray-400">Manual Terminal Execution</td>
                             </tr>
-                            <tr class='hover:bg-white/[0.02] transition-colors'>
-                                <td class='p-6 font-semibold text-white'>Reasoning Engine</td>
-                                <td class='p-6 text-accentBright font-medium bg-accentOrange/[0.03] border-x border-accentOrange/15'>
-                                    <i class='fa-solid fa-circle-check text-emerald-400 mr-2'></i> Dual-Engine Gemini + Groq Llama
-                                </td>
-                                <td class='p-6 text-gray-400'><i class='fa-solid fa-triangle-exclamation text-amber-400 mr-2'></i> Single proprietary model lock-in</td>
-                                <td class='p-6 text-gray-400'><i class='fa-solid fa-circle-xmark text-rose-400 mr-2'></i> Prone to hallucination loops</td>
+                            <tr>
+                                <td class="p-6 font-semibold text-white">Live Lead Hunting & Outreach</td>
+                                <td class="p-6 bg-orange-500/5 text-orange-300 font-medium">DuckDuckGo + SMTP Automated</td>
+                                <td class="p-6 text-gray-400">Manual Web Scraping</td>
+                                <td class="p-6 text-gray-400">None</td>
                             </tr>
-                            <tr class='hover:bg-white/[0.02] transition-colors'>
-                                <td class='p-6 font-semibold text-white'>Deployment & Evolution</td>
-                                <td class='p-6 text-accentBright font-medium bg-accentOrange/[0.03] border-x border-accentOrange/15'>
-                                    <i class='fa-solid fa-circle-check text-emerald-400 mr-2'></i> Direct GitHub API & Render redeploys
-                                </td>
-                                <td class='p-6 text-gray-400'><i class='fa-solid fa-triangle-exclamation text-amber-400 mr-2'></i> Local git commit outputs only</td>
-                                <td class='p-6 text-gray-400'><i class='fa-solid fa-circle-xmark text-rose-400 mr-2'></i> Zero deployment capabilities</td>
+                            <tr>
+                                <td class="p-6 font-semibold text-white">Dual-Engine Reasoning Audit</td>
+                                <td class="p-6 bg-orange-500/5 text-orange-300 font-medium">Groq Llama 3.3 + Qwen</td>
+                                <td class="p-6 text-gray-400">Single Model Dependency</td>
+                                <td class="p-6 text-gray-400">Single Model (Anthropic)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-6 font-semibold text-white">Secure Code Sandbox</td>
+                                <td class="p-6 bg-orange-500/5 text-orange-300 font-medium">E2B Isolated MicroVMs</td>
+                                <td class="p-6 text-gray-400">Unsandboxed Local Shell</td>
+                                <td class="p-6 text-gray-400">Local Terminal Environment</td>
                             </tr>
                         </tbody>
                     </table>
@@ -435,76 +445,79 @@
     </section>
 
     <!-- How to Use Chintu Section -->
-    <section id='workflow' class='py-24 px-4 sm:px-8 relative'>
-        <div class='max-w-7xl mx-auto'>
-            <div class='text-center max-w-3xl mx-auto mb-16'>
-                <div class='inline-flex items-center gap-2 px-3 py-1.5 rounded-full liquid-glass text-accentOrange text-xs font-mono uppercase tracking-wider mb-4'>
-                    <i class='fa-solid fa-route'></i> Workflow Guide
-                </div>
-                <h2 class='text-3xl sm:text-5xl font-extrabold text-white mb-4'>How to Use Chintu</h2>
-                <p class='text-gray-400 text-base sm:text-lg'>Delegate complex engineering missions instantly via Telegram in four effortless steps.</p>
+    <section id="guide" class="py-24 px-6 relative bg-gradient-to-t from-transparent via-orange-950/10 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-orange-400 mb-3">Mission Delegation</h2>
+                <h3 class="text-3xl sm:text-5xl font-bold tracking-tight mb-6">How to Use Chintu</h3>
+                <p class="text-gray-400 text-lg">Delegate complex engineering tasks in four simple steps and let Chintu execute end-to-end.</p>
             </div>
 
-            <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Step 1 -->
-                <div class='liquid-glass-card rounded-3xl p-8 relative'>
-                    <div class='text-4xl font-extrabold text-accentOrange/40 mb-4 font-mono'>01</div>
-                    <h3 class='text-xl font-bold text-white mb-3'>Connect via Telegram</h3>
-                    <p class='text-gray-400 text-sm leading-relaxed'>
-                        Open the official Chintu Telegram Bot and send your mission objective or project requirements in natural language.
-                    </p>
+                <div class="glass-panel p-8 relative">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 rounded-xl liquid-button flex items-center justify-center font-mono font-bold text-white shadow-lg">
+                        01
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white mt-2">Define Mission</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Provide your high-level objective in plain English (e.g., "Build a glassmorphic showcase and deploy to GitHub Pages").</p>
                 </div>
 
                 <!-- Step 2 -->
-                <div class='liquid-glass-card rounded-3xl p-8 relative'>
-                    <div class='text-4xl font-extrabold text-accentOrange/40 mb-4 font-mono'>02</div>
-                    <h3 class='text-xl font-bold text-white mb-3'>Autonomous Planning</h3>
-                    <p class='text-gray-400 text-sm leading-relaxed'>
-                        Gemini and Llama evaluate the task, consult persistent memory, and formulate a complete multi-step execution pipeline.
-                    </p>
+                <div class="glass-panel p-8 relative">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 rounded-xl liquid-button flex items-center justify-center font-mono font-bold text-white shadow-lg">
+                        02
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white mt-2">State-Machine Execution</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Chintu records state in Supabase, orchestrates Gemini and Llama specialists, and generates production-ready code.</p>
                 </div>
 
                 <!-- Step 3 -->
-                <div class='liquid-glass-card rounded-3xl p-8 relative'>
-                    <div class='text-4xl font-extrabold text-accentOrange/40 mb-4 font-mono'>03</div>
-                    <h3 class='text-xl font-bold text-white mb-3'>Execution & Verification</h3>
-                    <p class='text-gray-400 text-sm leading-relaxed'>
-                        Chintu hunts leads, executes sandbox code, generates FLUX images, and validates payloads with zero human intervention.
-                    </p>
+                <div class="glass-panel p-8 relative">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 rounded-xl liquid-button flex items-center justify-center font-mono font-bold text-white shadow-lg">
+                        03
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white mt-2">E2B Sandboxed Audit</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Code is rigorously tested inside secure cloud microVMs, verifying syntax integrity and structural robustness.</p>
                 </div>
 
                 <!-- Step 4 -->
-                <div class='liquid-glass-card rounded-3xl p-8 relative'>
-                    <div class='text-4xl font-extrabold text-accentOrange/40 mb-4 font-mono'>04</div>
-                    <h3 class='text-xl font-bold text-white mb-3'>Live Delivery</h3>
-                    <p class='text-gray-400 text-sm leading-relaxed'>
-                        Receive live URLs, documents, telemetry reports, and confirmation notices directly in your Telegram chat or email inbox.
-                    </p>
+                <div class="glass-panel p-8 relative">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 rounded-xl liquid-button flex items-center justify-center font-mono font-bold text-white shadow-lg">
+                        04
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white mt-2">Autonomous Publish</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Chintu commits the codebase to an isolated GitHub repository and configures live hosting instantly.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class='py-12 px-4 sm:px-8 border-t border-white/10 relative z-10'>
-        <div class='max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6'>
-            <div class='flex items-center space-x-3'>
-                <div class='w-8 h-8 rounded-lg bg-gradient-to-tr from-accentOrange to-accentLight flex items-center justify-center text-white text-sm shadow'>
-                    <i class='fa-solid fa-microchip'></i>
+    <!-- Frosted Footer -->
+    <footer class="py-12 px-6 border-t border-white/10 glass-nav">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg liquid-button flex items-center justify-center font-bold text-sm text-white">
+                    C
                 </div>
-                <span class='font-bold text-white'>CHINTU<span class='text-accentOrange'>.AI</span></span>
+                <span class="font-bold text-lg text-white">Chintu AI</span>
             </div>
 
-            <div class='flex items-center gap-3 px-4 py-2 rounded-full liquid-glass border border-emerald-500/30 text-xs text-emerald-400 font-mono'>
-                <div class='w-2 h-2 rounded-full bg-emerald-500 animate-ping'></div>
-                <span>Status: 100% Autonomous & Operational</span>
+            <div class="flex items-center space-x-3 px-4 py-2 rounded-xl glass-panel text-xs font-mono text-gray-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-indicator"></span>
+                <span>System Status: 100% Autonomous & Operational</span>
             </div>
 
-            <div class='text-xs text-gray-500 font-mono'>
-                &copy; 2025 Chintu AI Engineer. All rights reserved.
+            <div class="text-xs text-gray-500 font-mono">
+                © <span id="current-year">2025</span> Chintu Autonomous Systems. All rights reserved.
             </div>
         </div>
     </footer>
 
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
